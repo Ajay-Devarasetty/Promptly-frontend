@@ -1,0 +1,23 @@
+.login-container {
+  background: linear-gradient(to right, #141e30, #243b55);
+  min-height: 100vh;
+}
+
+/* Fix vh-100 issue on mobile */
+@media (max-width: 768px) {
+  .row.vh-100 {
+    min-height: 80vh !important;
+  }
+}
+
+/* Logo styling */
+.logo-img {
+  width: 80px;
+  height: auto;
+}
+
+/* Card style */
+.card {
+  border-radius: 15px;
+  overflow: hidden;
+}
