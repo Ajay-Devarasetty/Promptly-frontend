@@ -9,7 +9,6 @@ const ChatPage = () => {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState('');
   const chatBodyRef = useRef(null);
-  const [searches, setSearches] = useState([]);
 
   useEffect(() => {
     const fetchMessages = async () => {
