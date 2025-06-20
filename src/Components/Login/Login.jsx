@@ -16,7 +16,7 @@ const handleLogin = async (e) => {
   e.preventDefault();
   try {
     const response = await axios.post(
-      'http://localhost:8000/users/login',
+      'https://promptly-backend-5.onrender.com/users/login',
       {
         email:email,
         password:password,

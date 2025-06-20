@@ -13,7 +13,7 @@ const ChatPage = () => {
   useEffect(() => {
     const fetchMessages = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/chats/user/${sessionStorage.getItem('userId')}`);
+        const response = await axios.get(`https://promptly-backend-5.onrender.com/chats/user/${sessionStorage.getItem('userId')}`);
         console.log(response,"response");
         const chatPairs = response.data.flatMap(msg => ([
         { message: msg.question, user: true },
@@ -39,6 +39,10 @@ const ChatPage = () => {
     sessionStorage.removeItem('userId');
     sessionStorage.removeItem('userName');
     window.location.reload();
+  }
+
+  const deleteSearch = (props) =>{
+    console.log(props,"search props");
   }
 
   const sendMessage = async () => {
@@ -67,7 +71,7 @@ const ChatPage = () => {
     }, 500);
 
     try {
-      const response = await axios.post("http://localhost:8000/chats/chat", {
+      const response = await axios.post("https://promptly-backend-5.onrender.com/chats/chat", {
         question: trimmedInput,
         user_id: sessionStorage.getItem("userId"),
       });
@@ -126,6 +130,7 @@ const ChatPage = () => {
           {messages.slice().reverse().filter(msg => msg.user).map((search, index) => (
             <li key={index} className="list-group-item">
               <i className="bi bi-search text-warning"></i> {search.message}
+              <span style={{float:"inline-end"}} class="bi bi-trash" onClick={()=>deleteSearch(search)}></span>
             </li>
           ))}
         </ul>
@@ -190,7 +195,6 @@ const ChatPage = () => {
           <div className="card-body chat-body" ref={chatBodyRef}>
             {messages.map((msg, index) => (
               <div key={index} className={`chat-bubble ${msg.user ? 'user-message' : 'bot-message'}`}>
-                {console.log(messages,"msg")}
                 <div className="d-flex align-items-center">
                   <i className={`bi ${msg.user ? 'bi-person-circle user-icon' : 'bi-robot bot-icon'}`}></i>
                   <span className="ms-2">{msg.message}</span>

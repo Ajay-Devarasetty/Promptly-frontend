@@ -18,7 +18,7 @@ const Signup = () => {
   const signup = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/users/saveUser", {
+      const response = await axios.post("https://promptly-backend-5.onrender.com/users/saveUser", {
         name:name,
         email:email,
         password:password,
@@ -59,7 +59,7 @@ const Signup = () => {
         },
       };
 
-      const res = await axios.post("http://localhost:8000/user/signup", payload);
+      const res = await axios.post("https://promptly-backend-5.onrender.com/user/signup", payload);
       if (res.data.success) {
         setName("");
         setEmail("");
